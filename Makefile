@@ -10,3 +10,6 @@ down:
 
 up:
 	${DOCKER_COMPOSE} up -d
+
+phpunit:
+	${DOCKER_EXEC} ./vendor/bin/phpunit tests --colors=always

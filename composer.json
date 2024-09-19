@@ -3,7 +3,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Chernoff\\LvivItTestAssignment\\": "src/"
+            "Chernoff\\LvivItTestAssignment\\": "src/",
+            "Chernoff\\LvivItTestAssignment\\Tests\\": "tests/"
         }
     },
     "authors": [
@@ -17,6 +18,6 @@
         "pimple/pimple": "^3.5"
     },
     "require-dev": {
-        "phpunit/phpunit": "^11.3"
+        "phpunit/phpunit": "10"
     }
 }

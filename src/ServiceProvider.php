@@ -2,26 +2,33 @@
 
 namespace Chernoff\LvivItTestAssignment;
 
-use Chernoff\LvivItTestAssignment\Service\{Preprocessor,FileManager};
+use Chernoff\LvivItTestAssignment\Service\{Preprocessor,FileManager,StreamDataReader};
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
 class ServiceProvider implements ServiceProviderInterface
 {
+    public function __construct(
+        private readonly string $projectRoot,
+    ) {
+    }
+
     public function register(Container $container):void
     {
         $this
             ->registerConfiguration($container)
             ->registerControllers($container)
             ->registerPreprocessor($container)
-            ->registerFileManager($container);
+            ->registerFileManager($container)
+            ->registerStreamDataReader($container)
+        ;
     }
 
     private function registerConfiguration(Container $container): self
     {
-        $container['project_root'] = $_SERVER['DOCUMENT_ROOT'];
+        $container['project_root'] = $this->projectRoot;
 
-        $config = json_decode(file_get_contents('../config/config.json'), true);
+        $config = json_decode(file_get_contents($container['project_root'] . '/../config/config.json'), true);
         foreach ($config as $name => $value) {
             $container[$name] = $value;
         }
@@ -34,6 +41,7 @@ class ServiceProvider implements ServiceProviderInterface
         $container[Controller\MainController::class] = fn($c) => new Controller\MainController(
             $c[FileManager\FileManagerService::class],
             $c[Preprocessor\PreprocessorService::class],
+            $c[StreamDataReader\StreamDataReaderService::class],
         );
 
         return $this;
@@ -67,6 +75,12 @@ class ServiceProvider implements ServiceProviderInterface
         );
 
         $container[FileManager\FileManagerService::class] = fn($c) => new FileManager\FileManagerService($c[$c['active_storage']]);
+
+        return $this;
+    }
+    private function registerStreamDataReader(Container $container): self
+    {
+        $container[StreamDataReader\StreamDataReaderService::class] = fn($c) => new StreamDataReader\StreamDataReaderService();
 
         return $this;
     }

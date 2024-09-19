@@ -8,7 +8,7 @@ use Chernoff\LvivItTestAssignment\ServiceProvider;
 use Pimple\Container;
 
 // Init dependency container
-$container = (new Container())->register(new ServiceProvider());
+$container = (new Container())->register(new ServiceProvider($_SERVER['DOCUMENT_ROOT']));
 // Init router
 $dispatcher = FastRoute\simpleDispatcher(include '../config/routes.php');
 
