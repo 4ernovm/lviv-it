@@ -1,0 +1,12 @@
+{
+    "active_storage": "Chernoff\\LvivItTestAssignment\\Service\\FileManager\\Storage\\FilesystemStorage",
+    "storage_config": {
+        "Chernoff\\LvivItTestAssignment\\Service\\FileManager\\Storage\\FilesystemStorage": {
+            "path": "var/uploads"
+        }
+    },
+    "sensitive_data_fields": ["email"],
+    "preprocessor_plugins": [
+        "Chernoff\\LvivItTestAssignment\\Service\\Preprocessor\\Plugin\\SensitiveDataRemoverPlugin"
+    ]
+}

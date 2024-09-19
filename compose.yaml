@@ -1,0 +1,22 @@
+services:
+  nginx:
+    container_name: app_nginx
+    image: nginx:1.23
+    ports:
+      - '8080:80'
+    volumes:
+      - ./:/var/www/lviv_it_test_assignment/
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    working_dir: /var/www/lviv_it_test_assignment
+
+  php:
+    container_name: app_php
+    build:
+      context: ./docker/php/
+    working_dir: /var/www/lviv_it_test_assignment
+    volumes:
+      - ./:/var/www/lviv_it_test_assignment/
+    ports:
+      - '20002:9000'
+    depends_on:
+      - nginx

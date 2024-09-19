@@ -1,0 +1,22 @@
+{
+    "name": "chernoff/lviv_it_test_assignment",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Chernoff\\LvivItTestAssignment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "4ernovm",
+            "email": "4ernovm@gmail.com"
+        }
+    ],
+    "require": {
+        "nikic/fast-route": "^1.3",
+        "pimple/pimple": "^3.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.3"
+    }
+}

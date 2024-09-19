@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "234b871d-3bb8-431a-b964-98f8295a8f1a",
+		"name": "LvivItTestAssignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3303325"
+	},
+	"item": [
+		{
+			"name": "Get saved file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/download/filename",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"download",
+						"filename"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"source\": \"source\",\n    \"payload\": {\n        \"email\": \"some@email.net\",\n        \"some\": \"important\",\n        \"data\": \"here\"\n    }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/upload/filename",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"upload",
+						"filename"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file (empty payload)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"source\": \"source\",\n    \"payload\": {}\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/upload/filename",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"upload",
+						"filename"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file (source is empty)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"source\": \"\",\n    \"payload\": {\n        \"email\": \"some@email.net\",\n        \"some\": \"important\",\n        \"data\": \"here\"\n    }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/upload/filename",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"upload",
+						"filename"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file (source is missing)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"payload\": {\n        \"email\": \"some@email.net\",\n        \"some\": \"important\",\n        \"data\": \"here\"\n    }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/upload/filename",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"upload",
+						"filename"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
