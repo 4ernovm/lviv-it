@@ -109,7 +109,7 @@ class UploadTest extends ContainerAwareTestCase
     public function testUploadActionReturnsSuccessWithValidData(string $body, array $expectedResponse): void
     {
         $reader = $this->mockStreamDataReader($body);
-        $response = $this->configureController(reader: $reader)->upload('filename');
+        $response = $this->configureController(reader: $reader)->upload('new_file');
 
         $this->assertSame($expectedResponse, $response);
     }
@@ -132,6 +132,23 @@ class UploadTest extends ContainerAwareTestCase
                 ],
             ],
         ];
+    }
+
+    /**
+     * @depends
+     */
+    public function testUploadActionRemovesSensitiveData(): void
+    {
+        $response = $this->configureController()->download('new_file');
+
+        $this->assertSame([
+            'source' => 'source',
+            'payload' => [
+                'email' => '_SENSITIVE_DATA_REMOVED_',
+                'some' => 'important',
+                'data' => 'here',
+            ],
+        ], $response);
     }
 
     protected function configureController(
