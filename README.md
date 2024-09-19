@@ -18,11 +18,13 @@ There are 2 available endpoints:
 
 There's a Postman collection included which should make interaction process easier.
 
-## Starting and stopping the application
+## Starting and stopping the application, running tests
 
 To start the application use `make up`.
 
 And to stop it you should run `make down`.
+
+To run tests execute `make phpunit`
 
 ## Configuration reference:
 
